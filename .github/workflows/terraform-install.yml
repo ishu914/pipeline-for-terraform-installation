@@ -1,0 +1,17 @@
+name: terraform-install
+
+on: [pull_request]
+
+jobs:
+  install-terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.5
+
+      - name: Verify installation
+        run: terraform version

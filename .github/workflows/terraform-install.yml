@@ -1,17 +1,24 @@
+
 name: terraform-install
-
+ 
 on: [pull_request]
-
+ 
 jobs:
   install-terraform:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
+ 
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.9.5
-
+ 
       - name: Verify installation
         run: terraform version
+ 
+      - name: Keep runner alive until manually cancelled
+        run: |
+          echo "Terraform is installed on this runner."
+          echo "Go to the Actions tab and click 'Cancel workflow' whenever you want to tear it down."
+          sleep 21600
